@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guthli Se Hariyali - Save Environment, Plant Trees</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav .logo span {
+            font-size: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        nav .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav button {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        nav .login-btn {
+            background: white;
+            color: #2ecc71;
+        }
+
+        nav .signup-btn {
+            background: #f39c12;
+            color: white;
+        }
+
+        nav button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '🌱';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.1;
+            top: -5rem;
+            right: -5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn.primary {
+            background: white;
+            color: #2ecc71;
+        }
+
+        .cta-btn.secondary {
+            background: #f39c12;
+            color: white;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .dashboard-cta {
+            background: #1abc9c;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .dashboard-cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .dashboard-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2ecc71;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #2ecc71;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2ecc71;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #2ecc71;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            color: #666;
+        }
+
+        /* Impact Section */
+        .impact {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .impact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer .social-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        footer a {
+            color: #2ecc71;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .features h2, .how-it-works h2, .impact h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <span>🌱</span>
+            <span>Guthli Se Hariyali</span>
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="guthli_dashboard.html">Dashboard</a></li>
+        </ul>
+        <div class="auth-buttons">
+           <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+           <button class="signup-btn" onclick="window.location.href='signup.html'">Sign Up</button>
+
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>🌿 Aam Khao, Ped Lagao, Paryavaran Bachao!</h1>
+        <p>Transform mango seeds into thriving trees. Save the environment, one guthli at a time.</p>
+        <div class="cta-buttons">
+            <a href="guthli_donation.html" class="cta-btn primary" style="text-decoration: none; display: inline-block;">
+    Donate Seeds Now
+</a>
+
+            <a href="guthli_volunteer.html" class="cta-btn secondary" style="text-decoration: none; display: inline-block;">
+    Become a Volunteer
+</a>
+
+            <a href="donations-dashboard.html" class="cta-btn primary" style="text-decoration: none; display: inline-block; background: #3498db;">
+    📊 View All Donations
+</a>
+
+            <a href="guthli_dashboard.html" class="cta-btn secondary" style="text-decoration: none; display: inline-block; background: #1abc9c;">
+    📈 View Impact Dashboard
+</a>
+        </div>
+    </section>
+
+    <!-- Dashboard CTA -->
+    <section class="dashboard-cta">
+        <div class="dashboard-cta-content">
+            <h2>View the Live Impact Dashboard</h2>
+            <p>See real-time seed donations, trees planted, active donors, and volunteer participation in one place.</p>
+            <a href="guthli_dashboard.html" class="cta-btn primary" style="text-decoration: none; display: inline-block; background: #1abc9c; padding: 1rem 2rem;">
+                Open Impact Dashboard
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2>Why Join Us?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">♻️</div>
+                <h3>Reduce Waste</h3>
+                <p>Instead of throwing away mango seeds, donate them and help create a greener planet.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🌍</div>
+                <h3>Environmental Impact</h3>
+                <p>Every seed you donate becomes a tree that fights climate change and provides oxygen.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">👥</div>
+                <h3>Community Driven</h3>
+                <p>Join thousands of people working together to make our world greener and healthier.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📊</div>
+                <h3>Track Your Impact</h3>
+                <p>See real-time statistics of how many trees have been planted from your donations.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🎖️</div>
+                <h3>Earn Badges</h3>
+                <p>Get recognized for your contributions and climb the leaderboard of eco-warriors.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🌳</div>
+                <h3>Adopt a Tree</h3>
+                <p>Receive updates and photos of the tree planted from your seed. Watch it grow!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Collect Seeds</h3>
+                <p>Collect mango seeds after eating mangoes during summer.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Clean & Dry</h3>
+                <p>Clean the seeds and dry them properly for storage.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Donate</h3>
+                <p>Submit your seeds through our platform or visit a collection point.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>We Plant</h3>
+                <p>Our volunteers plant your seeds and nurture them into trees.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <h3>Track Growth</h3>
+                <p>Receive updates and photos as your tree grows and thrives.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact" id="impact">
+        <h2>Our Impact</h2>
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number">15,234</div>
+                <div class="stat-label">Seeds Collected</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">8,567</div>
+                <div class="stat-label">Trees Planted</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">3,421</div>
+                <div class="stat-label">Active Donors</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">892</div>
+                <div class="stat-label">Volunteers</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Guthli Se Hariyali. All rights reserved.</p>
+        <p>Empowering communities to create a greener future, one seed at a time.</p>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+</body>
+</html>

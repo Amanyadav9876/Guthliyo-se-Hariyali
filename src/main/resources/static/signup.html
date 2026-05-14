@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Guthli Se Hariyali</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .signup-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #2ecc71;
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        .agreement {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .agreement input[type="checkbox"] {
+            width: auto;
+            margin-top: 0.3rem;
+            cursor: pointer;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.3);
+        }
+
+        .divider {
+            text-align: center;
+            color: #999;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .login-link {
+            text-align: center;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #2ecc71;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .signup-container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <!-- Logo -->
+        <div class="logo">
+            <div class="logo-icon">🌱</div>
+            <div class="logo-text">Guthli Se Hariyali</div>
+        </div>
+
+        <!-- Heading -->
+        <h1>Join Us Today</h1>
+        <p class="subtitle">Create your account to get started</p>
+
+        <!-- Messages -->
+        <div class="error-message" id="errorMsg"></div>
+        <div class="success-message" id="successMsg"></div>
+
+        <!-- Sign Up Form -->
+        <form id="signupForm">
+            <!-- Role Selection -->
+            <div class="form-group">
+                <label for="role">I want to join as *</label>
+                <select id="role" name="role" required>
+                    <option value="">Select your role</option>
+                    <option value="DONOR">🌱 Donor - Donate Seeds</option>
+                    <option value="VOLUNTEER">🤝 Volunteer - Help Plant Trees</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
+            </div>
+
+            <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" placeholder="Your City" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input type="password" id="password" name="password" placeholder="At least 6 characters" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password *</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" required>
+            </div>
+
+            <div class="agreement">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms" style="margin: 0;">I agree to the Terms of Service and Privacy Policy</label>
+            </div>
+
+            <button type="submit" class="signup-btn">Create Account</button>
+        </form>
+
+        <!-- Divider -->
+        <div class="divider">OR</div>
+
+        <!-- Login Link -->
+        <div class="login-link">
+            Already have an account? <a href="login.html">Sign in here</a>
+        </div>
+    </div>
+
+    <script>
+    // Check URL parameters for role selection
+    window.addEventListener('load', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role');
+        if (role) {
+            document.getElementById('role').value = role.toUpperCase();
+        }
+    });
+
+    document.getElementById('signupForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const role = document.getElementById('role').value;
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const city = document.getElementById('city').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const terms = document.getElementById('terms').checked;
+
+        // Validation
+        if (!role || !firstName || !lastName || !email || !phone || !city || !password || !confirmPassword) {
+            document.getElementById('errorMsg').textContent = '❌ Please fill in all required fields.';
+            document.getElementById('errorMsg').style.display = 'block';
+            document.getElementById('successMsg').style.display = 'none';
+            return;
+        }
+
+        // Email validation
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            document.getElementById('errorMsg').textContent = '❌ Please enter a valid email address.';
+            document.getElementById('errorMsg').style.display = 'block';
+            document.getElementById('successMsg').style.display = 'none';
+            return;
+        }
+
+        // Phone validation (at least 10 digits)
+        if (!/^\d{10,}$/.test(phone.replace(/[-\s]/g, ''))) {
+            document.getElementById('errorMsg').textContent = '❌ Please enter a valid phone number.';
+            document.getElementById('errorMsg').style.display = 'block';
+            document.getElementById('successMsg').style.display = 'none';
+            return;
+        }
+
+        // Password validation
+        if (password.length < 6) {
+            document.getElementById('errorMsg').textContent = '❌ Password must be at least 6 characters long.';
+            document.getElementById('errorMsg').style.display = 'block';
+            document.getElementById('successMsg').style.display = 'none';
+            return;
+        }
+
+        // Password confirmation
+        if (password !== confirmPassword) {
+            document.getElementById('errorMsg').textContent = '❌ Passwords do not match.';
+            document.getElementById('errorMsg').style.display = 'block';
+            document.getElementById('successMsg').style.display = 'none';
+            return;
+        }
+
+        // Terms agreement
+        if (!terms) {
+            document.getElementById('errorMsg').textContent = '❌ Please agree to the Terms of Service.';
+            document.getElementById('errorMsg').style.display = 'block';
+            document.getElementById('successMsg').style.display = 'none';
+            return;
+        }
+
+        // Show loading state
+        const submitBtn = document.querySelector('.signup-btn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Creating Account...';
+
+        try {
+            // Send to backend
+            const response = await fetch('http://localhost:8080/api/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    email,
+                    phone: phone.replace(/[-\s]/g, ''), // Clean phone number
+                    city,
+                    password,
+                    role
+                })
+            });
+
+            if (response.ok) {
+                const user = await response.json();
+                
+                document.getElementById('successMsg').textContent = '✅ Account created successfully! Redirecting to login...';
+                document.getElementById('successMsg').style.display = 'block';
+                document.getElementById('errorMsg').style.display = 'none';
+                
+                // Redirect to login after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+            } else {
+                const error = await response.text();
+                throw new Error(error || 'Failed to create account');
+            }
+        } catch (error) {
+            document.getElementById('errorMsg').textContent = '❌ ' + error.message;
+            document.getElementById('errorMsg').style.display = 'block';
+            document.getElementById('successMsg').style.display = 'none';
+        } finally {
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Create Account';
+        }
+    });
+    </script>
+</body>
+</html>
