@@ -260,7 +260,7 @@
         
         function loadDonations() {
             // Fetch donor's specific donations from backend
-            fetch('http://localhost:8080/api/seeds/all')
+            fetch('https://final-project-full-stack-production.up.railway.app/api/seeds/all')
                 .then(res => res.json())
                 .then(donations => {
                     const user = JSON.parse(localStorage.getItem('user'));
